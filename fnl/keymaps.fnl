@@ -50,7 +50,7 @@
     (vim.keymap.set :n :<leader>D type_definition opts)
     (vim.keymap.set :n :<leader>rn rename opts)
     (vim.keymap.set :n :<leader>ca code_action opts)
-    (vim.keymap.set :n :<leader>f format opts)))
+    (vim.keymap.set :n :<leader>p format opts)))
 
 (fn completion []
   (let [luasnip (require :luasnip)
