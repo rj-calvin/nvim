@@ -4,6 +4,16 @@
 (let [{: setup} (require :mason-lspconfig)]
   (setup))
 
+(let [{: setup} (require :formatter)
+      util (require :formatter.util)
+      filetypes (require :formatter.filetypes)]
+  (setup {:filetype {:typescript [(. filetypes.typescript :prettier)]
+                     :lua [(. filetypes.lua :stylua)]
+                     :fennel [#{:exe :fnlfmt
+                                :args [(-> (util.get_current_buffer_file_path)
+                                           util.escape_path)]
+                                :stdin true}]}}))
+
 (let [{: setup} (require :nvim-terminal)]
   (setup {:disable_default_keymaps true}))
 
@@ -45,3 +55,4 @@
                                   (luasnip.lsp_expand body))}
               :mapping (cmp.mapping.preset.insert (completion))
               :sources [{:name :nvim_lsp} {:name :luasnip}]}))
+

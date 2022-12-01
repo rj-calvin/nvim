@@ -9,6 +9,7 @@
     (vim.keymap.set :t :<c-k> :<c-\><c-n><c-w><c-k> {})
     (vim.keymap.set :t :<c-l> :<c-\><c-n><c-w><c-l> {})
     (vim.keymap.set :n "\\" #(command :Neotree) {})
+    (vim.keymap.set :n :<leader>p #(command :FormatWrite))
     (vim.keymap.set :n :<leader>e diagnostic.open_float {:silent true})
     (vim.keymap.set :n :<leader>q diagnostic.setloclist {:silent true})
     (vim.keymap.set :n "[d" diagnostic.goto_prev {:silent true})
@@ -37,8 +38,7 @@
          : list_workspace_folders
          : type_definition
          : rename
-         : code_action
-         : format} vim.lsp.buf]
+         : code_action} vim.lsp.buf]
     (vim.keymap.set :n :gD declaration opts)
     (vim.keymap.set :n :gd definition opts)
     (vim.keymap.set :n :gi implementation opts)
@@ -50,8 +50,7 @@
                     #(print (vim.inspect (list_workspace_folders))))
     (vim.keymap.set :n :<leader>D type_definition opts)
     (vim.keymap.set :n :<leader>rn rename opts)
-    (vim.keymap.set :n :<leader>ca code_action opts)
-    (vim.keymap.set :n :<leader>p format opts)))
+    (vim.keymap.set :n :<leader>ca code_action opts)))
 
 (fn completion []
   (let [luasnip (require :luasnip)
