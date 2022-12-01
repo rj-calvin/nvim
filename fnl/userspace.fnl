@@ -7,6 +7,14 @@
 (let [{: setup} (require :nvim-terminal)]
   (setup {:disable_default_keymaps true}))
 
+(let [{: setup} (require :neo-tree)]
+  (tset vim.g :neo_tree_remove_legacy_commands 1)
+  (setup {:close_if_last_window true
+          :filesystem {:follow_current_file true
+                       :window {:mappings {:o :open
+                                           :O :close_node
+                                           "\\" :close_window}}}}))
+
 (let [{: setup} (require :keymaps)]
   (setup))
 

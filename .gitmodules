@@ -40,3 +40,9 @@
 [submodule "pack/plugin/start/nvim-terminal"]
 	path = pack/plugin/start/nvim-terminal
 	url = git@github.com:s1n7ax/nvim-terminal
+[submodule "pack/plugin/start/neo-tree.nvim"]
+	path = pack/plugin/start/neo-tree.nvim
+	url = git@github.com:nvim-neo-tree/neo-tree.nvim
+[submodule "pack/plugin/start/nui.nvim"]
+	path = pack/plugin/start/nui.nvim
+	url = git@github.com:MunifTanjim/nui.nvim

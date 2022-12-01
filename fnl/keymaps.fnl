@@ -1,5 +1,6 @@
 (fn setup []
-  (let [diagnostic vim.diagnostic
+  (let [command vim.api.nvim_command
+        diagnostic vim.diagnostic
         telescope (require :telescope.builtin)
         terminal (. (require :nvim-terminal) :DefaultTerminal)]
     (vim.keymap.set :t :<c-\><c-\> :<c-\><c-n> {})
@@ -7,6 +8,7 @@
     (vim.keymap.set :t :<c-j> :<c-\><c-n><c-w><c-j> {})
     (vim.keymap.set :t :<c-k> :<c-\><c-n><c-w><c-k> {})
     (vim.keymap.set :t :<c-l> :<c-\><c-n><c-w><c-l> {})
+    (vim.keymap.set :n "\\" #(command :Neotree) {})
     (vim.keymap.set :n :<leader>e diagnostic.open_float {:silent true})
     (vim.keymap.set :n :<leader>q diagnostic.setloclist {:silent true})
     (vim.keymap.set :n "[d" diagnostic.goto_prev {:silent true})
