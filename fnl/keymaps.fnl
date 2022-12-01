@@ -44,7 +44,6 @@
     (vim.keymap.set :n :gi implementation opts)
     (vim.keymap.set :n :gr references opts)
     (vim.keymap.set :n :K hover opts)
-    (vim.keymap.set :n :<c-k> signature_help opts)
     (vim.keymap.set :n :<leader>wa add_workspace_folder opts)
     (vim.keymap.set :n :<leader>wr remove_workspace_folder opts)
     (vim.keymap.set :n :<leader>wl
