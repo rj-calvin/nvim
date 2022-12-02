@@ -1,29 +1,20 @@
+(tset vim.o :mouse nil)
+
 (let [{: setup} (require :mason)]
   (setup))
 
 (let [{: setup} (require :mason-lspconfig)]
   (setup))
 
-(let [{: setup} (require :formatter)
-      util (require :formatter.util)
-      filetypes (require :formatter.filetypes)]
-  (setup {:filetype {:typescript [(. filetypes.typescript :prettier)]
-                     :lua [(. filetypes.lua :stylua)]
-                     :fennel [#{:exe :fnlfmt
-                                :args [(-> (util.get_current_buffer_file_path)
-                                           util.escape_path)]
-                                :stdin true}]}}))
+(let [{: setup} (require :formatter)]
+  (setup (require :config.formatter)))
 
 (let [{: setup} (require :nvim-terminal)]
   (setup {:disable_default_keymaps true}))
 
 (let [{: setup} (require :neo-tree)]
   (tset vim.g :neo_tree_remove_legacy_commands 1)
-  (setup {:close_if_last_window true
-          :filesystem {:follow_current_file true
-                       :window {:mappings {:o :open
-                                           :O :close_node
-                                           "\\" :close_window}}}}))
+  (setup (require :config.neo-tree)))
 
 (let [{: setup} (require :keymaps)]
   (setup))
@@ -33,8 +24,6 @@
 
 (let [{: setup} (require :fzf)]
   (setup))
-
-(tset vim.o :mouse nil)
 
 (let [{: nvim_create_autocmd : nvim_create_augroup} vim.api
       group (nvim_create_augroup :hotpot-ft {})
