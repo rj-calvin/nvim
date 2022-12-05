@@ -16,6 +16,9 @@
   (tset vim.g :neo_tree_remove_legacy_commands 1)
   (setup (require :config.neo-tree)))
 
+(let [{: setup} (require :nvim-treesitter.configs)]
+  (setup (require :config.nvim-treesitter)))
+
 (let [{: setup} (require :keymaps)]
   (setup))
 
