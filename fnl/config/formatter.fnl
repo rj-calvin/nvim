@@ -2,10 +2,20 @@
   (let [util (require :formatter.util)]
     (-> (util.get_current_buffer_file_path) util.escape_path)))
 
-(let [filetypes (require :formatter.filetypes)]
-  {:filetype {:typescript [(. filetypes.typescript :prettier)]
-              :lua [(. filetypes.lua :stylua)]
-              :rust [(. filetypes.rust :rustfmt)]
+(fn clangformat []
+  (let [defaults (require :formatter.defaults.clangformat)
+        {: apply_defaults} (require :plenary.tbl)]
+    (apply_defaults {:args [:--assume-filename (current_file)]}
+                    (defaults))))
+
+(let [defaults (require :formatter.defaults)
+      {: apply_defaults} (require :plenary.tbl)]
+  {:filetype {:typescript [defaults.prettier]
+              :lua [defaults.stylua]
+              :rust [defaults.rustfmt]
+              :c [clangformat]
+              :cpp [clangformat]
+              :java [clangformat]
               :elixir [#{:exe :mix :args [:format (current_file)] :stdin false}]
               :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]}})
 
