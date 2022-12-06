@@ -11,6 +11,10 @@
 (let [defaults (require :formatter.defaults)
       {: apply_defaults} (require :plenary.tbl)]
   {:filetype {:typescript [defaults.prettier]
+              :typescriptreact [defaults.prettier]
+              :javascript [defaults.prettier]
+              :javascriptreact [defaults.prettier]
+              :svelte [defaults.prettier]
               :lua [defaults.stylua]
               :rust [defaults.rustfmt]
               :c [clangformat]
