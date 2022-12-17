@@ -1,8 +1,12 @@
 (fn setup []
-  (let [configs (require :lspconfig.configs)]
-    nil))
+  (let [configs (require :lspconfig.configs)
+        {: root_pattern} (require :lspconfig.util)]
+    (tset configs :ucm {:default_config {:cmd [:netcat :localhost :5757]
+                                         :filetypes [:unison]
+                                         :root_dir (root_pattern :.unison/)
+                                         :settings {}}})))
 
-(fn fallback [on_attach capabilities server]
+(fn setup_handler [on_attach capabilities server]
   (let [{: setup} (. (require :lspconfig) server)]
     (setup {: on_attach : capabilities})))
 
@@ -14,4 +18,5 @@
                              :workspace {:library {(vim.fn.expand :$VIMRUNTIME/lua) true
                                                    (vim.fn.expand :$VIMRUNTIME/lua/vim/lsp) true}}}}})))
 
-{: setup : fallback : sumneko_lua}
+{: setup : setup_handler : sumneko_lua}
+
