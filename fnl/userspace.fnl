@@ -36,7 +36,7 @@
 (let [{: setup_handlers} (require :mason-lspconfig)
       {: on_attach} (require :keymaps)
       capabilities ((. (require :cmp_nvim_lsp) :default_capabilities))
-      {: setup_handler : sumneko_lua } (require :lsp)]
+      {: setup_handler : sumneko_lua} (require :lsp)]
   (setup_handler on_attach capabilities :ucm)
   (setup_handlers {1 (partial setup_handler on_attach capabilities)
                    :sumneko_lua #(sumneko_lua on_attach capabilities)}))
