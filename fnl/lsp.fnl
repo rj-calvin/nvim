@@ -15,7 +15,8 @@
     (setup {: on_attach
             : capabilities
             :settings {:Lua {:diagnostics {:globals [:vim]}
-                             :workspace {:library {(vim.fn.expand :$VIMRUNTIME/lua) true
+                             :workspace {:checkThirdParty false
+                                         :library {(vim.fn.expand :$VIMRUNTIME/lua) true
                                                    (vim.fn.expand :$VIMRUNTIME/lua/vim/lsp) true}}}}})))
 
 {: setup : setup_handler : sumneko_lua}
