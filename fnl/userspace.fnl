@@ -22,8 +22,10 @@
 (let [{: setup} (require :keymaps)]
   (setup))
 
-(let [{: setup} (require :lsp)]
-  (setup))
+(let [{: setup} (require :lsp)
+      {: on_attach} (require :keymaps)
+      capabilities ((. (require :cmp_nvim_lsp) :default_capabilities))]
+  (setup on_attach capabilities))
 
 (let [{: setup} (require :fzf)]
   (setup))
@@ -32,15 +34,6 @@
       group (nvim_create_augroup :hotpot-ft {})
       callback #(pcall require (.. :ftplugin. (vim.fn.expand :<amatch>)))]
   (nvim_create_autocmd :FileType {: callback : group}))
-
-(let [{: setup_handlers} (require :mason-lspconfig)
-      {: on_attach} (require :keymaps)
-      capabilities ((. (require :cmp_nvim_lsp) :default_capabilities))
-      {: setup_handler : sumneko_lua} (require :lsp)]
-  (setup_handler on_attach capabilities :ucm)
-  (setup_handler on_attach capabilities :hls)
-  (setup_handlers {1 (partial setup_handler on_attach capabilities)
-                   :sumneko_lua #(sumneko_lua on_attach capabilities)}))
 
 (let [luasnip (require :luasnip)
       cmp (require :cmp)
