@@ -20,5 +20,7 @@
               :java [clangformat]
               :elixir [#{:exe :mix :args [:format (current_file)] :stdin false}]
               :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]
-              :tex [#{:exe :latexindent :args [:-m :-l :-g :/dev/null (current_file)] :stdin true}]}})
+              :tex [#{:exe :latexindent
+                      :args [:-m :-l :-g :/dev/null "-"]
+                      :stdin true}]}})
 
