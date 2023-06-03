@@ -4,7 +4,7 @@
   (setup))
 
 (let [{: setup} (require :mason-lspconfig)]
-  (setup))
+  (setup (require :config.mason-lspconfig)))
 
 (let [{: setup} (require :formatter)]
   (setup (require :config.formatter)))

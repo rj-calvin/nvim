@@ -26,14 +26,13 @@
     (vim.keymap.set :n :<leader>t4 #(: terminal :open 4) {:silent true})
     (vim.keymap.set :n :<leader>t5 #(: terminal :open 5) {:silent true})))
 
-(fn on_attach [client buffer]
+(fn on_attach [_client buffer]
   (let [opts {:noremap true :silent true : buffer}
         {: declaration
          : definition
          : implementation
          : references
          : hover
-         : signature_help
          : add_workspace_folder
          : remove_workspace_folder
          : list_workspace_folders

@@ -5,11 +5,9 @@
 (fn clangformat []
   (let [defaults (require :formatter.defaults.clangformat)
         {: apply_defaults} (require :plenary.tbl)]
-    (apply_defaults {:args [:--assume-filename (current_file)]}
-                    (defaults))))
+    (apply_defaults {:args [:--assume-filename (current_file)]} (defaults))))
 
-(let [defaults (require :formatter.defaults)
-      {: apply_defaults} (require :plenary.tbl)]
+(let [defaults (require :formatter.defaults)]
   {:filetype {:typescript [defaults.prettier]
               :typescriptreact [defaults.prettier]
               :javascript [defaults.prettier]
@@ -21,5 +19,6 @@
               :cpp [clangformat]
               :java [clangformat]
               :elixir [#{:exe :mix :args [:format (current_file)] :stdin false}]
-              :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]}})
+              :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]
+              :tex [#{:exe :latexindent :args [:-m :-l :-g :/dev/null (current_file)] :stdin true}]}})
 
