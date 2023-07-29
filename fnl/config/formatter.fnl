@@ -18,6 +18,7 @@
               :c [clangformat]
               :cpp [clangformat]
               :java [clangformat]
+              :purescript [#{:exe :purs-tidy :args [:format] :stdin true}]
               :elixir [#{:exe :mix :args [:format (current_file)] :stdin false}]
               :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]
               :tex [#{:exe :latexindent
