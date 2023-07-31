@@ -23,5 +23,8 @@
               :fennel [#{:exe :fnlfmt :args [(current_file)] :stdin true}]
               :tex [#{:exe :latexindent
                       :args [:-m :-l :-g :/dev/null "-"]
-                      :stdin true}]}})
+                      :stdin true}]
+              :context [#{:exe :latexindent
+                          :args [:-m :-l :-g :/dev/null "-"]
+                          :stdin true}]}})
 
