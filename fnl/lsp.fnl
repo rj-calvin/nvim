@@ -1,3 +1,6 @@
+(fn default_config [server]
+  (. (require (.. :lspconfig.server_configurations. server)) :default_config))
+
 (fn setup_handler [on_attach capabilities server]
   (let [{: setup} (. (require :lspconfig) server)]
     (setup {: on_attach : capabilities})))
@@ -6,7 +9,13 @@
   (let [{: setup_handlers} (require :mason-lspconfig)]
     (setup_handler on_attach capabilities :unison)
     (setup_handler on_attach capabilities :hls)
-    (setup_handlers {1 (partial setup_handler on_attach capabilities)})))
+    (setup_handlers {1 (partial setup_handler on_attach capabilities)
+                     :texlab #(let [{: setup} (. (require :lspconfig) :texlab)
+                                    config (default_config :texlab)]
+                                (setup {: on_attach
+                                        : capabilities
+                                        :filetypes [:context
+                                                    (unpack config.filetypes)]}))})))
 
 {: setup}
 
