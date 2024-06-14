@@ -49,3 +49,6 @@
 [submodule "pack/plugin/start/formatter.nvim"]
 	path = pack/plugin/start/formatter.nvim
 	url = git@github.com:mhartington/formatter.nvim
+[submodule "pack/plugin/start/lean.nvim"]
+	path = pack/plugin/start/lean.nvim
+	url = git@github.com:Julian/lean.nvim

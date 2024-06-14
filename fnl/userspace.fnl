@@ -27,6 +27,10 @@
       capabilities ((. (require :cmp_nvim_lsp) :default_capabilities))]
   (setup on_attach capabilities))
 
+(let [{: setup} (require :lean)
+      {: on_attach} (require :keymaps)]
+  (setup {:lsp {: on_attach} :mappings true}))
+
 (let [{: setup} (require :fzf)]
   (setup))
 
