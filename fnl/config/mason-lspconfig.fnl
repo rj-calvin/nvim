@@ -6,7 +6,6 @@
                     :eslint
                     :elixirls
                     :fennel_language_server
-                    :tsserver
                     :texlab
                     :lua_ls
                     :marksman
