@@ -29,7 +29,7 @@
 
 (let [{: setup} (require :lean)
       {: on_attach} (require :keymaps)]
-  (setup {:lsp {: on_attach} :mappings true}))
+  (setup {:lsp {: on_attach} :mappings true :ft {:nomodifiable []}}))
 
 (let [{: setup} (require :fzf)]
   (setup))

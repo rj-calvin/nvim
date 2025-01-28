@@ -1,6 +1,5 @@
 {:ensure_installed [:bashls
                     :clangd
-                    :cmake
                     :cssls
                     :dockerls
                     :eslint
