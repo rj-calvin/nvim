@@ -6,6 +6,7 @@
                     :elixirls
                     :fennel_language_server
                     :texlab
+                    :ts_ls
                     :lua_ls
                     :marksman
                     :rust_analyzer

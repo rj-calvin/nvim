@@ -1,5 +1,5 @@
 (fn default_config [server]
-  (. (require (.. :lspconfig.server_configurations. server)) :default_config))
+  (. (require (.. :lspconfig.configs. server)) :default_config))
 
 (fn setup_handler [on_attach capabilities server]
   (let [{: setup} (. (require :lspconfig) server)]
