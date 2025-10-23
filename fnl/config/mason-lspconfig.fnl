@@ -4,7 +4,6 @@
                     :dockerls
                     :eslint
                     :elixirls
-                    :fennel_language_server
                     :texlab
                     :ts_ls
                     :lua_ls
