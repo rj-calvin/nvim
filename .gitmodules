@@ -3,7 +3,7 @@
 	url = git@github.com:rktjmp/hotpot.nvim
 [submodule "pack/plugin/start/nvim-treesitter"]
 	path = pack/plugin/start/nvim-treesitter
-	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+	url = git@github.com:neovim-treesitter/nvim-treesitter.git
 [submodule "pack/plugin/start/mason.nvim"]
 	path = pack/plugin/start/mason.nvim
 	url = git@github.com:williamboman/mason.nvim
