@@ -2,12 +2,24 @@
   (let [command vim.api.nvim_command
         diagnostic vim.diagnostic
         telescope (require :telescope.builtin)
-        terminal (. (require :nvim-terminal) :DefaultTerminal)]
-    (vim.keymap.set :t :<c-\><c-\> :<c-\><c-n> {})
-    (vim.keymap.set :t :<c-h> :<c-\><c-n><c-w><c-h> {})
-    (vim.keymap.set :t :<c-j> :<c-\><c-n><c-w><c-j> {})
-    (vim.keymap.set :t :<c-k> :<c-\><c-n><c-w><c-k> {})
-    (vim.keymap.set :t :<c-l> :<c-\><c-n><c-w><c-l> {})
+        terminal (. (require :nvim-terminal) :DefaultTerminal)
+        opts {:noremap true :silent true}
+        {: declaration
+         : definition
+         : implementation
+         : references
+         : hover
+         : add_workspace_folder
+         : remove_workspace_folder
+         : list_workspace_folders
+         : type_definition
+         : rename
+         : code_action} vim.lsp.buf]
+    (vim.keymap.set :t "<c-\\><c-\\>" "<c-\\><c-n>" {})
+    (vim.keymap.set :t :<c-h> "<c-\\><c-n><c-w><c-h>" {})
+    (vim.keymap.set :t :<c-j> "<c-\\><c-n><c-w><c-j>" {})
+    (vim.keymap.set :t :<c-k> "<c-\\><c-n><c-w><c-k>" {})
+    (vim.keymap.set :t :<c-l> "<c-\\><c-n><c-w><c-l>" {})
     (vim.keymap.set :n "\\" #(command :Neotree) {})
     (vim.keymap.set :n :<leader>p #(command :FormatWrite))
     (vim.keymap.set :n :<leader>e diagnostic.open_float {:silent true})
@@ -24,7 +36,19 @@
     (vim.keymap.set :n :<leader>t2 #(: terminal :open 2) {:silent true})
     (vim.keymap.set :n :<leader>t3 #(: terminal :open 3) {:silent true})
     (vim.keymap.set :n :<leader>t4 #(: terminal :open 4) {:silent true})
-    (vim.keymap.set :n :<leader>t5 #(: terminal :open 5) {:silent true})))
+    (vim.keymap.set :n :<leader>t5 #(: terminal :open 5) {:silent true})
+    (vim.keymap.set :n :gD declaration opts)
+    (vim.keymap.set :n :gd definition opts)
+    (vim.keymap.set :n :gi implementation opts)
+    (vim.keymap.set :n :gr references opts)
+    (vim.keymap.set :n :K hover opts)
+    (vim.keymap.set :n :<leader>wa add_workspace_folder opts)
+    (vim.keymap.set :n :<leader>wr remove_workspace_folder opts)
+    (vim.keymap.set :n :<leader>wl
+                    #(print (vim.inspect (list_workspace_folders))))
+    (vim.keymap.set :n :<leader>D type_definition opts)
+    (vim.keymap.set :n :<leader>rn rename opts)
+    (vim.keymap.set :n :<leader>ca code_action opts)))
 
 (fn on_attach [_client buffer]
   (let [opts {:noremap true :silent true : buffer}
